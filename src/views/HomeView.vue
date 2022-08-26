@@ -1,21 +1,26 @@
 <template>
-  <div class="hello">
-    <h2>{{ msg }}</h2>
-    <h2 v-if="user">Signed In User: {{ user }}</h2>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-    <br>
-    <div v-if="isSignedIn">
+  <main class="container">
+    <div class="content">
+      <div class="introduction">
+        <img alt="darth logo" src="../assets/Darth-Vader-icon.png">
+         <h1>Star Viewars</h1>
+           <h3>Visualizador de dados sobre Star Wars</h3>
+           </div>
+           <div class="sign">
+           </div>
+          <div id="firebaseui-auth-container">
+          <h3>Acesse a plataforma de forma fácil!</h3>  
+        </div>
+       <div v-if="isSignedIn">
       <button @click="handleSignOut">Sign Out</button>
+     </div>
     </div>
-  </div>
+  </main>  
 </template>
-
 
 <script>
 import { ref } from 'vue'
 import firebaseConfig from '../config/firebaseConfig'
-
 // v9 compat packages are API compatible with v8 code
 import firebase from 'firebase/compat/app'
 
@@ -52,11 +57,6 @@ export default {
           // so it doesn't refresh the page
           return false
         },
-        uiShown: function() {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById('loader').style.display = 'none'
-        }
       }
     }
 
@@ -88,8 +88,55 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #40454a;
+  color: #fff;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 75px;
+}
+
+.introduction h1 {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.introduction h3 {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.sign p {
+  margin-bottom: 5px;
+  font-size: 20px;
+  margin-left: auto 100px;
+}
+
+@media(min-width: 1024px) {
+  .content {
+    flex-direction: row;
+  }
+
+  .introduction {
+    margin-right: 100px;
+    margin-bottom: 0;
+  }
+}
 </style>
