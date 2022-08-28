@@ -9,11 +9,8 @@
            <div class="sign">
            </div>
           <div id="firebaseui-auth-container">
-          <h3>Acesse a plataforma de forma fácil!</h3>  
+          <h4>Acesse a plataforma de forma fácil!</h4>  
         </div>
-       <div v-if="isSignedIn">
-      <button @click="handleSignOut">Sign Out</button>
-     </div>
     </div>
   </main>  
 </template>
@@ -21,16 +18,16 @@
 <script>
 import { ref } from 'vue'
 import firebaseConfig from '../config/firebaseConfig'
-// v9 compat packages are API compatible with v8 code
 import firebase from 'firebase/compat/app'
 
 firebase.initializeApp(firebaseConfig);import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
-import { getAuth, signOut } from "firebase/auth"
+import { getAuth } from "firebase/auth"
+import router from '@/router';
 
 const auth = getAuth()
 export default {
-  name: 'Login',
+  name: 'Home',
   props: {
     msg: String
   },
@@ -49,13 +46,9 @@ export default {
       ],
       callbacks: {
         signInSuccessWithAuthResult: function (authResult) {
-          user.value = authResult.user.displayName;
           console.log(authResult)
           isSignedIn.value = true;
-          console.log('Signed in by user ' + user.value)
- 
-          // so it doesn't refresh the page
-          return false
+          router.push("/about")
         },
       }
     }
@@ -65,23 +58,10 @@ export default {
 
     ui.start('#firebaseui-auth-container', uiConfig)
 
-    const handleSignOut = () => {
-      signOut(auth).then(() => {
-       // Sign-out successful.
-       user.value = null;
-       isSignedIn.value = false;
-       console.log('Signed out')
-       ui.start('#firebaseui-auth-container', uiConfig)
-      }).catch((error) => {
-        // An error happened.
-        console.log(error)
-      });
-    }
 
     return {
       user,
       isSignedIn,
-      handleSignOut,
     }
   }
 }
