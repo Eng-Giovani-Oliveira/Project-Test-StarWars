@@ -6,15 +6,15 @@ import 'firebaseui/dist/firebaseui.css'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')  },
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')  },
   {
-    path: '/about',
-    name: 'about',
+    path: '/home',
+    name: 'home',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (home.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
     meta: {
       requireAuth: true,
     }
@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         next({
-          path: "/About",
+          path: "/home",
         })
       } else {
         next()
