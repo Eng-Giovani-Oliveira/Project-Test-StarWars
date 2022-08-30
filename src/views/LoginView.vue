@@ -3,7 +3,7 @@
     <div class="content">
       <div class="introduction">
         <img alt="darth logo" src="../assets/Darth-Vader-icon.png">
-         <h1>Star Viewars</h1>
+         <h1>Star NeWars</h1>
            <h3>Visualizador de dados sobre Star Wars</h3>
            </div>
            <div class="sign">

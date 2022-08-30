@@ -1,12 +1,14 @@
 <template>
-  <router-view />
-  <div class="container">
-    <h1>This is an Home page</h1>
+<div class="container">
+  <div class="img">
+    <img alt="darth logo" src="../assets/logo5.png">
+    </div>
     <div>
-      <button class="logout" @click="handleSignOut">Sair</button>
-     </div>
+      <button class="Films">Films</button>
   </div>
- 
+      <button class="logout" @click="handleSignOut">Sair</button>
+</div>
+
 </template>
 
 <script>
@@ -59,10 +61,8 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: #40454a;
-  color: #fff;
 }
 .logout {
   border-color:#f61f0e;
@@ -71,6 +71,14 @@ color:#fff;
 height: 30px;
 width: 60px;
 cursor: pointer;
+margin-top: 300px;
 }
 
+.Films {
+cursor: pointer;
+color:rgb(0, 0, 0);
+height: 30px;
+width: 60px;
+border-color:#ebdb04;
+}
 </style>
