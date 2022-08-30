@@ -3,7 +3,9 @@ import firebase from 'firebase/compat/app'
 import 'firebaseui/dist/firebaseui.css'
 
 
-const routes = [
+const router = createRouter({
+  history: createWebHashHistory(), 
+  routes: [
   {
     path: '/',
     name: 'login',
@@ -19,12 +21,9 @@ const routes = [
       requireAuth: true,
     }
   }
-]
-
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+ ]
 })
+
 router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.auth)) {

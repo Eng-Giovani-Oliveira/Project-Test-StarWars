@@ -103,12 +103,6 @@ export default {
   font-size: 20px;
 }
 
-.sign p {
-  margin-bottom: 5px;
-  font-size: 20px;
-  margin-left: auto 100px;
-}
-
 @media(min-width: 1024px) {
   .content {
     flex-direction: row;

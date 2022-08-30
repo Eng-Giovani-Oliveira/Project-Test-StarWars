@@ -2,17 +2,15 @@
 <div class="container">
   <div class="img">
     <img alt="darth logo" src="../assets/logo5.png">
-    </div>
-    <div>
+     </div>
+     <div>
       <button class="Films">Films</button>
-  </div>
+      </div>
       <button class="logout" @click="handleSignOut">Sair</button>
-</div>
-
+    </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 import firebaseConfig from '../config/firebaseConfig'
 import firebase from 'firebase/compat/app'
 
@@ -29,24 +27,15 @@ export default {
     msg: String
   },
     setup() {
-    const user = ref(null)
-    const isSignedIn = ref(false)
-
     const handleSignOut = () => {
-      signOut(auth).then(() => {
-       // Sign-out successful.
-      
+      signOut(auth).then(() => {      
        router.push("/")
        console.log('Signed out')
       }).catch((error) => {
-        // An error happened.
         console.log(error)
-      });
+      })
     }
-
     return {
-      user,
-      isSignedIn,
       handleSignOut,
     }
   }
@@ -58,7 +47,7 @@ export default {
 .container {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,13 +61,15 @@ height: 30px;
 width: 60px;
 cursor: pointer;
 margin-top: 300px;
+border-radius: 4px;
+font-size: large;
 }
-
 .Films {
 cursor: pointer;
-color:rgb(0, 0, 0);
-height: 30px;
+color:#000000;
 width: 60px;
 border-color:#ebdb04;
+border-radius: 4px;
+font-size: large;
 }
 </style>
