@@ -8,7 +8,7 @@
            </div>
            <div class="sign">
            </div>
-          <div id="firebaseui-auth-container">
+          <div id='firebaseui-auth-container'>
           <h4>Acesse a plataforma de forma fácil!</h4>  
         </div>
     </div>
@@ -27,7 +27,7 @@ import router from '@/router';
 
 const auth = getAuth()
 export default {
-  name: 'Login',
+  name: 'LoginView',
   props: {
     msg: String
   },
@@ -54,9 +54,8 @@ export default {
     }
 
     // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth())
-
-    ui.start('#firebaseui-auth-container', uiConfig)
+const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth())
+ui.start('#firebaseui-auth-container', uiConfig)
 
 
     return {
@@ -78,6 +77,7 @@ export default {
   align-items: center;
   background: #40454a;
   color: #fff;
+  background-attachment: fixed;
 }
 
 .content {

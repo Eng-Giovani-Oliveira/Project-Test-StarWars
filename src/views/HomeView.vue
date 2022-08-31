@@ -1,10 +1,14 @@
 <template>
 <div class="container">
   <div class="img">
-    <img alt="darth logo" src="../assets/logo5.png">
+    <img alt="logo starwars" src="../assets/logo5.png">
      </div>
-     <div>
-      <button class="Films">Films</button>
+     <div class="row">
+      <button class="planets" @click="allPlanets">Planets</button>
+      <button class="Films" @click="allmovies">Movies</button>
+      <div>
+      <h1 class="msg"># Em construção #</h1>
+    </div>
       </div>
       <button class="logout" @click="handleSignOut">Sair</button>
     </div>
@@ -13,7 +17,7 @@
 <script>
 import firebaseConfig from '../config/firebaseConfig'
 import firebase from 'firebase/compat/app'
-
+import axios from "axios"
 firebase.initializeApp(firebaseConfig)
 import 'firebaseui/dist/firebaseui.css'
 import { getAuth, signOut } from "firebase/auth"
@@ -22,11 +26,17 @@ import router from '@/router'
 const auth = getAuth()
 
 export default {
-  name: 'Home',
+  name: 'HomeViews',
   props: {
     msg: String
   },
     setup() {
+        {
+    axios.get('https://swapi.dev/api/')
+    .then((response) => {
+      console.log(response.data)
+    })
+  }
     const handleSignOut = () => {
       signOut(auth).then(() => {      
        router.push("/")
@@ -35,7 +45,7 @@ export default {
         console.log(error)
       })
     }
-    return {
+return {
       handleSignOut,
     }
   }
@@ -52,6 +62,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background: #40454a;
+  background-attachment: fixed;
 }
 .logout {
   border-color:#f61f0e;
@@ -66,10 +77,30 @@ font-size: large;
 }
 .Films {
 cursor: pointer;
-color:#000000;
-width: 60px;
+color:#FFD700;
+width: 80px;
+height: 30px;
 border-color:#ebdb04;
 border-radius: 4px;
 font-size: large;
+text-align: center;
+background-color: #000000;
+align-items: center;
+}
+.msg {
+  color: #fff;
+}
+.planets {
+cursor: pointer;
+color:#FFD700;
+width: 80px;
+height: 30px;
+border-color:#ebdb04;
+border-radius: 4px;
+font-size: large;
+text-align: center;
+margin: 0 15px;
+align-items: center;
+background-color: #000000;   
 }
 </style>
