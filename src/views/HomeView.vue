@@ -7,7 +7,6 @@
       <button class="planets" @click="allPlanets">Planets</button>
       <button class="Films" @click="allmovies">Movies</button>
       <div>
-      <h1 class="msg"># Em construção #</h1>
     </div>
       </div>
       <button class="logout" @click="handleSignOut">Sair</button>
@@ -15,6 +14,8 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue'
+import api from '../config/api'
 import firebaseConfig from '../config/firebaseConfig'
 import firebase from 'firebase/compat/app'
 import axios from "axios"
@@ -23,20 +24,17 @@ import 'firebaseui/dist/firebaseui.css'
 import { getAuth, signOut } from "firebase/auth"
 import router from '@/router'
 
-const auth = getAuth()
-
 export default {
   name: 'HomeViews',
-  props: {
-    msg: String
-  },
     setup() {
-        {
-    axios.get('https://swapi.dev/api/')
-    .then((response) => {
-      console.log(response.data)
-    })
-  }
+   const auth = getAuth()
+   const starwars = ref([])
+   const fetchStarwars = () => api.get('/films/1/')
+   .then((response) => {
+    console.log(response)
+   })
+onMounted(fetchStarwars)
+    
     const handleSignOut = () => {
       signOut(auth).then(() => {      
        router.push("/")
@@ -47,6 +45,7 @@ export default {
     }
 return {
       handleSignOut,
+      starwars,
     }
   }
 }
